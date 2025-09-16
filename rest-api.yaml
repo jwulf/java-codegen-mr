@@ -1,0 +1,69 @@
+openapi: "3.0.3"
+info:
+  title: "Orchestration Cluster API"
+  version: "0.1"
+  contact:
+    name: "Camunda Engineering"
+    url: "https://github.com/camunda/camunda/issues"
+  description: "API for communicating with a Camunda 8 cluster."
+  license:
+    name: "Camunda License Version 1.0"
+    url: "https://github.com/camunda/camunda/blob/main/licenses/CAMUNDA-LICENSE-1.0.txt"
+externalDocs:
+  description: "Find out more"
+  url: "https://docs.camunda.io/docs/apis-tools/orchestration-cluster-api-rest/orchestration-cluster-api-rest-overview/"
+servers:
+  - url: "{schema}://{host}:{port}/v2"
+    variables:
+      host:
+        default: "localhost"
+        description: "The hostname of the Orchestration Cluster REST Gateway."
+      port:
+        default: "8080"
+        description: "The port of the Orchestration Cluster REST API server."
+      schema:
+        default: "http"
+        description: "The schema of the Orchestration Cluster REST API server."
+tags:
+  - name: "Demo"
+    description: "Demo operations to verify the API is reachable."
+paths: 
+  /demo:
+    get:
+      operationId: "getDemo"
+      tags: 
+        - "Demo"
+      summary: "Demo endpoint"
+      description: "A simple demo endpoint to verify the API is reachable."
+      responses:
+        '200':
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemoResponse"
+components:
+  schemas:
+    LongKey:
+      description: "Zeebe Engine resource key (Java long serialized as string)"
+      type: "string"
+      pattern: "^-?[0-9]+$"
+      minLength: 1
+      maxLength: 25
+    ProcessInstanceKey:
+      description: "System-generated key for a process instance."
+      format: "ProcessInstanceKey"
+      x-semantic-type: "ProcessInstanceKey"
+      example: "2251799813690746"
+      allOf:
+        - $ref: "#/components/schemas/LongKey"
+    DemoResponse:
+      type: "object"
+      properties:
+        processInstanceKey: 
+          $ref: "#/components/schemas/ProcessInstanceKey"
+        valueField:
+          type: "integer"
+          description: "An field that we want to coerce to Java.long"
+          maximum: 4503599627370496 # 2^52
+          minimum: 0
