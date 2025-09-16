@@ -19,46 +19,22 @@ target/generated-sources/openapi
 ```
 They are automatically added to the compile classpath.
 
-## Regenerate Only
-To (re)generate without full compilation:
-```bash
-mvn -Popenapi clean generate-sources
+## Findings
+
+Schema mapping can be used to coerce a primitive string type. 
+
+```xml
+<schemaMappings>
+    <schemaMapping>ProcessInstanceKey=String</schemaMapping>
+</schemaMappings>
 ```
 
-## Configuration Highlights (see `pom.xml`)
-- Generator: `java`
-- Library: `${openapi.generator.library}` (currently `webclient`)
-- Packages:
-  - API: `com.example.api`
-  - Models: `com.example.model`
-  - Invoker: `com.example.client`
-- Tests disabled for faster iteration (`generateApiTests=false`, `generateModelTests=false`).
+outputs:
 
-Adjust via Maven properties or plugin `<configuration>`.
-
-## Changing the HTTP Library
-Edit property `openapi.generator.library` in `pom.xml` (examples: `feign`, `okhttp-gson`, `jersey2`, `resttemplate`). Then rebuild.
-
-## After Generation: Using the Client
-Add your own code under `src/main/java` and import generated classes, e.g.:
 ```java
-// Example usage (after generation)
-// var api = new com.example.api.DefaultApi();
-```
-
-## Validating the Spec
-Build fails if `rest-api.yaml` is invalid. You can manually validate with:
-```bash
-mvn org.openapitools:openapi-generator-maven-plugin:validate
-```
-
-## Updating the Spec
-Modify `rest-api.yaml` and re-run the build. Avoid editing generated files (they will be overwritten).
-
-## Testing
-Add tests under `src/test/java` (JUnit 5 dependency included). Run:
-```bash
-mvn test
+public class DemoResponse {
+  public static final String JSON_PROPERTY_PROCESS_INSTANCE_KEY = "processInstanceKey";
+}
 ```
 
 ## License

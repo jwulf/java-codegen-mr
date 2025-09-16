@@ -133,7 +133,9 @@
                             <apiPackage>${openapi.package.base}.api</apiPackage>
                             <modelPackage>${openapi.package.base}.model</modelPackage>
                             <invokerPackage>${openapi.package.base}.client</invokerPackage>
-                            <typeMappings>ProcessInstanceKey=string</typeMappings>
+                            <schemaMappings>
+                                <schemaMapping>ProcessInstanceKey=String</schemaMapping>
+                            </schemaMappings>
                             <configOptions>
                                 <dateLibrary>java8</dateLibrary>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
