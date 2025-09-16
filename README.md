@@ -1,6 +1,8 @@
-# REST API Java Client Generation
+# REST API Java & TypeScript Client Generation
 
-This project demonstrates generating a Java client from the `rest-api.yaml` OpenAPI specification using the `openapi-generator-maven-plugin`.
+This project enables side-by-side Java and TypeScript client generation from the `rest-api.yaml` OpenAPI specification.
+
+This enables experiments and inspecting schema change implications for code generation in a focused, minimal environment.
 
 ## Prerequisites
 - Java 17+
@@ -54,7 +56,4 @@ public class DemoResponse {
 
 ## License
 Apache 2.0 (adjust as needed).
-
----
-Generated client versioning is tied to the `rest-api.yaml` evolution; consider tagging commits post-generation for traceability.
 
