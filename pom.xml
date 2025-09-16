@@ -133,6 +133,9 @@
                             <apiPackage>${openapi.package.base}.api</apiPackage>
                             <modelPackage>${openapi.package.base}.model</modelPackage>
                             <invokerPackage>${openapi.package.base}.client</invokerPackage>
+                            <typeMappings>
+                                <typeMapping>int52=Long</typeMapping>
+                            </typeMappings>
                             <schemaMappings>
                                 <schemaMapping>ProcessInstanceKey=String</schemaMapping>
                             </schemaMappings>

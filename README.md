@@ -5,19 +5,34 @@ This project demonstrates generating a Java client from the `rest-api.yaml` Open
 ## Prerequisites
 - Java 17+
 - Maven 3.8+
+- Node.js 18+ (for TypeScript client generation)
 
-## Generate the Client
+## Generate the Java Client
 Run a standard build; generation occurs in the `generate-sources` phase:
 
 ```bash
 mvn clean compile
 ```
 
-Generated sources appear under:
+Generated Java sources appear under:
 ```
 target/generated-sources/openapi
 ```
 They are automatically added to the compile classpath.
+
+## Generate the TypeScript Client (@hey-api/openapi-ts)
+Install dependencies (first time):
+```bash
+npm install
+```
+Generate TS client:
+```bash
+npm run generate:ts
+```
+Output path:
+```
+generated/ts
+```
 
 ## Findings
 

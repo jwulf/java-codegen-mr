@@ -64,6 +64,4 @@ components:
           $ref: "#/components/schemas/ProcessInstanceKey"
         valueField:
           type: "integer"
-          description: "An field that we want to coerce to Java.long"
-          maximum: 4503599627370496 # 2^52
-          minimum: 0
+          format: "int64"
